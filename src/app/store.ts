@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { gamesApi } from '@/api/gamesApi'
-import filtersReducer from '@/features/filters/model/filtersSlice'
+import filtersReducer from '@/store/filtersSlice'
 
 export const store = configureStore({
   reducer: {

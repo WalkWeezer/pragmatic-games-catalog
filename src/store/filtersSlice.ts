@@ -1,5 +1,4 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '@/app/store'
 
 interface FiltersState {
   searchQuery: string
@@ -31,10 +30,5 @@ const filtersSlice = createSlice({
 
 export const { setSearchQuery, applySearch, setGameTypeId } =
   filtersSlice.actions
-
-export const selectSearchQuery = (state: RootState) => state.filters.searchQuery
-export const selectAppliedSearchQuery = (state: RootState) =>
-  state.filters.appliedSearchQuery
-export const selectGameTypeId = (state: RootState) => state.filters.gameTypeId
 
 export default filtersSlice.reducer

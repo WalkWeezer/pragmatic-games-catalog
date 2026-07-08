@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_BASE_URL, PARTNER_NAME } from '@/shared/config/constants'
 import type { GamesListResponse } from '@/types/game'
 
 export const gamesApi = createApi({
@@ -8,8 +7,8 @@ export const gamesApi = createApi({
   endpoints: (builder) => ({
     getGames: builder.query<GamesListResponse, void>({
       query: () => ({
-        url: API_BASE_URL,
-        params: { partner_name: PARTNER_NAME },
+        url: '/api/pragmatic/game/list',
+        params: { partner_name: 'belparyaj' },
       }),
     }),
   }),

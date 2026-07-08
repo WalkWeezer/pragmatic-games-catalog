@@ -3,14 +3,12 @@ import { useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import {
   applySearch,
-  selectGameTypeId,
-  selectSearchQuery,
   setGameTypeId,
   setSearchQuery,
-} from '@/features/filters/model/filtersSlice'
+} from '@/store/filtersSlice'
 import type { Game } from '@/types/game'
-import styles from './GamesToolbar.module.scss'
 import searchVectorIcon from '@/assets/Vector.svg'
+import styles from './GamesToolbar.module.scss'
 
 interface GamesToolbarProps {
   games: Game[]
@@ -18,18 +16,13 @@ interface GamesToolbarProps {
 
 export const GamesToolbar = ({ games }: GamesToolbarProps) => {
   const dispatch = useAppDispatch()
-  const searchQuery = useAppSelector(selectSearchQuery)
-  const gameTypeId = useAppSelector(selectGameTypeId)
+  const searchQuery = useAppSelector((state) => state.filters.searchQuery)
+  const gameTypeId = useAppSelector((state) => state.filters.gameTypeId)
 
   const gameTypeOptions = useMemo(() => {
-    const uniqueTypes = Array.from(
-      new Set(games.map((game) => game.gameTypeID)),
-    ).sort()
+    const types = Array.from(new Set(games.map((game) => game.gameTypeID))).sort()
 
-    return [
-      { value: 'all', label: 'All' },
-      ...uniqueTypes.map((type) => ({ value: type, label: type })),
-    ]
+    return ['all', ...types]
   }, [games])
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -53,13 +46,13 @@ export const GamesToolbar = ({ games }: GamesToolbarProps) => {
                 dispatch(setGameTypeId(event.target.value))
               }
             >
-              {gameTypeOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+              {gameTypeOptions.map((type) => (
+                <option key={type} value={type}>
+                  {type === 'all' ? 'All' : type}
                 </option>
               ))}
             </select>
-            <span className={styles.selectArrow} aria-hidden="true" />
+            <span className={styles.selectArrow} />
           </div>
         </div>
       </div>
@@ -76,7 +69,6 @@ export const GamesToolbar = ({ games }: GamesToolbarProps) => {
                   className={styles.searchIcon}
                   src={searchVectorIcon}
                   alt=""
-                  aria-hidden="true"
                 />
                 <input
                   id="search"

@@ -1,4 +1,4 @@
-@use 'shared/styles/variables' as *;
+@use 'styles/variables' as *;
 
 .toolbar {
   display: flex;
@@ -35,6 +35,7 @@
   align-items: flex-start;
   gap: 5px;
   width: 100%;
+
   .label {
     font-weight: 600;
   }

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { GameCard } from '@/entities/game/ui/GameCard'
-import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll'
+import { GameCard } from '@/components/GameCard/GameCard'
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'
 import type { Game } from '@/types/game'
 import styles from './GamesGrid.module.scss'
 
@@ -10,10 +10,10 @@ interface GamesGridProps {
 }
 
 export const GamesGrid = ({ games, resetKey }: GamesGridProps) => {
-  const { visibleCount, sentinelRef, hasMore } = useInfiniteScroll({
-    totalItems: games.length,
+  const { visibleCount, sentinelRef, hasMore } = useInfiniteScroll(
+    games.length,
     resetKey,
-  })
+  )
 
   const visibleGames = useMemo(
     () => games.slice(0, visibleCount),
@@ -21,11 +21,11 @@ export const GamesGrid = ({ games, resetKey }: GamesGridProps) => {
   )
 
   if (games.length === 0) {
-    return <p className={styles.empty}>No games found</p>
+    return <p className={styles.empty}>Ничего не найдено</p>
   }
 
   return (
-    <section className={styles.section} aria-label="Games list">
+    <section className={styles.section}>
       <ul className={styles.grid}>
         {visibleGames.map((game) => (
           <li key={game.gameID} className={styles.item}>
@@ -34,9 +34,7 @@ export const GamesGrid = ({ games, resetKey }: GamesGridProps) => {
         ))}
       </ul>
 
-      {hasMore && (
-        <div ref={sentinelRef} className={styles.sentinel} aria-hidden="true" />
-      )}
+      {hasMore && <div ref={sentinelRef} className={styles.sentinel} />}
     </section>
   )
 }

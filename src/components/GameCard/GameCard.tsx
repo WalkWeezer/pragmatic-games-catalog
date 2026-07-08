@@ -1,6 +1,8 @@
 import type { Game } from '@/types/game'
-import { getGameImageUrl } from '@/shared/lib/getGameImageUrl'
 import styles from './GameCard.module.scss'
+
+const getImageUrl = (gameId: string) =>
+  `https://bsw-dk1.pragmaticplay.net/game_pic/square/200/${gameId}.png`
 
 interface GameCardProps {
   game: Game
@@ -12,7 +14,7 @@ export const GameCard = ({ game }: GameCardProps) => {
       <div className={styles.imageWrapper}>
         <img
           className={styles.image}
-          src={getGameImageUrl(game.gameID)}
+          src={getImageUrl(game.gameID)}
           alt={game.gameName}
           loading="lazy"
           width={200}
