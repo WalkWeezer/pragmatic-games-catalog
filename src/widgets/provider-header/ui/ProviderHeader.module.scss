@@ -1,0 +1,22 @@
+@use 'shared/styles/variables' as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px $page-padding-x 16px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  color: $color-text;
+}

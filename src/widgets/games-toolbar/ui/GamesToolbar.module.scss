@@ -1,0 +1,193 @@
+@use 'shared/styles/variables' as *;
+
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 20px;
+}
+
+.block {
+  background-color: $color-bg-secondary;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+}
+
+.searchBlock {
+  width: 500px;
+  flex: 0 0 500px;
+  min-width: 500px;
+}
+
+.field {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+}
+
+.searchField {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+  .label {
+    font-weight: 600;
+  }
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.selectWrapper {
+  position: relative;
+  width: 140px;
+}
+
+.select {
+  width: 100%;
+  height: 40px;
+  padding: 0 36px 0 14px;
+  border: 1px solid $color-border;
+  border-radius: 2px;
+  background-color: $color-bg-secondary;
+  color: $color-text;
+  appearance: none;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba($color-accent, 0.35);
+  }
+}
+
+.selectArrow {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid $color-accent;
+  border-bottom: 1.5px solid $color-accent;
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+.searchGroup {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.searchControls {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 15px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px 0 50px;
+  border: 1px solid $color-border;
+  border-radius: 2px 0 0 2px;
+  background-color: $color-bg-secondary;
+  color: $color-text-muted;
+  outline: none;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba($color-border, 0.35);
+  }
+}
+
+.searchButton {
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+  background-color: $color-accent-3;
+  color: $color-text-regular;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    filter: brightness(0.95);
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .block {
+    width: 100%;
+  }
+
+  .searchBlock {
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .selectWrapper,
+  .inputWrapper {
+    width: 100%;
+  }
+
+  .searchGroup {
+    justify-content: stretch;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .searchControls {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .input {
+    border-right: 1px solid $color-border;
+    border-radius: 2px;
+  }
+
+  .searchButton {
+    width: 100%;
+    border-radius: 2px;
+  }
+}

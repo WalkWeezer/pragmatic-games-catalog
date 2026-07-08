@@ -1,0 +1,28 @@
+@use './variables' as *;
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) $color-bg;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: $color-bg;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.22);
+  border: 2px solid $color-bg;
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
